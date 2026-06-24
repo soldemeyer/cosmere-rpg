@@ -53,7 +53,7 @@ export async function journalEntryPageTextFromUuid(
 
     // Enrich the text if requested
     return options.enrich
-        ? await TextEditor.enrichHTML(text, {
+        ? await foundry.applications.ux.TextEditor.enrichHTML(text, {
               relativeTo: page as unknown as foundry.abstract.Document.Any,
           })
         : text;

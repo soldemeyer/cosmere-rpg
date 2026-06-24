@@ -466,24 +466,32 @@ export class CosmereItem<
 
         // Perform the roll
         const roll = await d20Roll(
-            foundry.utils.mergeObject(options, {
-                data,
-                chatMessage: false,
-                title: `${this.name} (${
-                    skillId
-                        ? game.i18n.localize(
-                              CONFIG.COSMERE.skills[skillId].label,
-                          )
-                        : `${game.i18n.localize('GENERIC.Custom')} ${game.i18n.localize('GENERIC.Skill')}`
-                })`,
-                defaultAttribute: skill.attribute ? skill.attribute : undefined,
-                parts: parts,
-                plotDie: options.plotDie ?? this.system.activation.plotDie,
-                opportunity:
-                    options.opportunity ?? this.system.activation.opportunity,
-                complication:
-                    options.complication ?? this.system.activation.complication,
-            }) as D20RollConfigration,
+            foundry.utils.mergeObject(
+                options,
+                {
+                    data,
+                    chatMessage: false,
+                    title: `${this.name} (${
+                        skillId
+                            ? game.i18n.localize(
+                                  CONFIG.COSMERE.skills[skillId].label,
+                              )
+                            : `${game.i18n.localize('GENERIC.Custom')} ${game.i18n.localize('GENERIC.Skill')}`
+                    })`,
+                    defaultAttribute: skill.attribute
+                        ? skill.attribute
+                        : undefined,
+                    parts: parts,
+                    plotDie: options.plotDie ?? this.system.activation.plotDie,
+                    opportunity:
+                        options.opportunity ??
+                        this.system.activation.opportunity,
+                    complication:
+                        options.complication ??
+                        this.system.activation.complication,
+                },
+                { inplace: false },
+            ) as D20RollConfigration,
         );
 
         if (roll && options.chatMessage !== false) {
@@ -550,16 +558,20 @@ export class CosmereItem<
         const formula = options.overrideFormula ?? this.system.damage.formula;
         // Perform the roll
         const roll = await damageRoll(
-            foundry.utils.mergeObject(options, {
-                formula:
-                    rollData.mod !== undefined
-                        ? `${formula} + ${rollData.mod}`
-                        : formula,
-                damageType: this.system.damage.type,
-                mod: rollData.mod,
-                data: rollData,
-                source: this.name,
-            }) as DamageRollConfiguration,
+            foundry.utils.mergeObject(
+                options,
+                {
+                    formula:
+                        rollData.mod !== undefined
+                            ? `${formula} + ${rollData.mod}`
+                            : formula,
+                    damageType: this.system.damage.type,
+                    mod: rollData.mod,
+                    data: rollData,
+                    source: this.name,
+                },
+                { inplace: false },
+            ) as DamageRollConfiguration,
         );
 
         // Gather the formula options for graze rolls
@@ -607,11 +619,15 @@ export class CosmereItem<
         const usesBaseDamage = grazeFormula.includes('@damage');
 
         const grazeRoll = await damageRoll(
-            foundry.utils.mergeObject(options, {
-                formula: grazeFormula,
-                damageType: this.system.damage.type,
-                data: rollData,
-            }) as DamageRollConfiguration,
+            foundry.utils.mergeObject(
+                options,
+                {
+                    formula: grazeFormula,
+                    damageType: this.system.damage.type,
+                    data: rollData,
+                },
+                { inplace: false },
+            ) as DamageRollConfiguration,
         );
 
         // update with results from the basic roll if needed and store for display
@@ -1502,9 +1518,13 @@ export class CosmereItem<
     }
 
     public getRollData() {
-        return foundry.utils.mergeObject(super.getRollData(), {
-            actor: this.actor?.getRollData(),
-        });
+        return foundry.utils.mergeObject(
+            super.getRollData(),
+            {
+                actor: this.actor?.getRollData(),
+            },
+            { inplace: false },
+        );
     }
 
     public getEnricherData() {

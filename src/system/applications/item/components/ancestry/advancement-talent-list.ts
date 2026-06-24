@@ -98,7 +98,9 @@ export class AdvancementTalentListComponent extends DragDropComponentMixin(
         $(this.element!).find('.drop-area').removeClass('dropping');
 
         // Get data
-        const data = TextEditor.getDragEventData(event) as unknown as {
+        const data = foundry.applications.ux.TextEditor.getDragEventData(
+            event,
+        ) as unknown as {
             type: string;
             uuid: string;
         };

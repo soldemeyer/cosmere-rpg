@@ -281,12 +281,6 @@ export function ComponentHandlebarsApplicationMixin<
                 this.dispatchRenderEventRecursive(childRef),
             );
         }
-
-        public _getHeaderControls() {
-            const controls = super._getHeaderControls();
-            console.log('Getting header controls for mixin', controls);
-            return controls;
-        }
     } as unknown as typeof ComponentHandlebarsApplication;
 }
 

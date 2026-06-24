@@ -25,7 +25,7 @@ export async function buildEmbedHTML(
     // Enrich the description
     let description = null;
     if (item.hasDescription())
-        description = await TextEditor.enrichHTML(
+        description = await foundry.applications.ux.TextEditor.enrichHTML(
             item.system.description?.value ??
                 item.system.description?.short ??
                 '',

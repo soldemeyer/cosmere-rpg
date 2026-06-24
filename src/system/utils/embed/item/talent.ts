@@ -38,7 +38,7 @@ export async function buildEmbedHTML(
     }
 
     // Enrich the description
-    const description = await TextEditor.enrichHTML(
+    const description = await foundry.applications.ux.TextEditor.enrichHTML(
         item.system.description?.value ?? item.system.description?.short ?? '',
         {
             relativeTo: options?.relativeTo,

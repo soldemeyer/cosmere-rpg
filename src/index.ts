@@ -85,8 +85,6 @@ Hooks.once('init', async () => {
         dataModels.activeEffect.config;
     CONFIG.ActiveEffect.documentClass =
         documents.CosmereActiveEffect as typeof ActiveEffect as any;
-    CONFIG.ActiveEffect.legacyTransferral = false;
-
     Roll.TOOLTIP_TEMPLATE = `systems/${SYSTEM_ID}/templates/${TEMPLATES.CHAT_ROLL_TOOLTIP}`;
 
     // Add fonts
@@ -98,7 +96,10 @@ Hooks.once('init', async () => {
     // Configure the starter rules
     registerStarterRulesConfig();
 
-    Actors.unregisterSheet('core', ActorSheet);
+    foundry.documents.collections.Actors.unregisterSheet(
+        'core',
+        foundry.applications.sheets.ActorSheetV2,
+    );
     registerActorSheet(
         ActorType.Character,
         applications.actor.CharacterSheet as any,
@@ -108,7 +109,10 @@ Hooks.once('init', async () => {
         applications.actor.AdversarySheet as any,
     );
 
-    Items.unregisterSheet('core', ItemSheet);
+    foundry.documents.collections.Items.unregisterSheet(
+        'core',
+        foundry.applications.sheets.ItemSheetV2,
+    );
     registerItemSheet(
         ItemType.Culture,
         applications.item.CultureItemSheet as any,
