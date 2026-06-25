@@ -169,5 +169,5 @@
     "background": "systems/cosmere-rpg/assets/art/foundry_setup_Cosmere_RPG.webp",
     "url": "https://github.com/soldemeyer/cosmere-rpg",
     "manifest": "https://raw.githubusercontent.com/soldemeyer/main/src/system.json",
-    "download": "https://github.com/soldemeyer/cosmere-rpg/releases/download/release-2.1.1/cosmere-rpg-release-2.1.1.zip"
+    "download": "https://github.com/soldemeyer/cosmere-rpg/raw/refs/heads/main/releases/release-2.1.1/cosmere-rpg-release-2.1.1.zip"
 }
