@@ -42,16 +42,27 @@ export function areKeysPressed(action: string): boolean {
     const activeModifiers = {} as Record<string, boolean>;
 
     const addModifiers = (key: string) => {
-        if (hasKey(KeyboardManager.MODIFIER_CODES, key)) {
-            KeyboardManager.MODIFIER_CODES[key].forEach(
+        if (
+            hasKey(
+                foundry.helpers.interaction.KeyboardManager.MODIFIER_CODES,
+                key,
+            )
+        ) {
+            foundry.helpers.interaction.KeyboardManager.MODIFIER_CODES[
+                key
+            ].forEach(
                 (n: string) =>
                     (activeModifiers[n] = game.keyboard.downKeys.has(n)),
             );
         }
     };
-    addModifiers(KeyboardManager.MODIFIER_KEYS.CONTROL);
-    addModifiers(KeyboardManager.MODIFIER_KEYS.SHIFT);
-    addModifiers(KeyboardManager.MODIFIER_KEYS.ALT);
+    addModifiers(
+        foundry.helpers.interaction.KeyboardManager.MODIFIER_KEYS.CONTROL,
+    );
+    addModifiers(
+        foundry.helpers.interaction.KeyboardManager.MODIFIER_KEYS.SHIFT,
+    );
+    addModifiers(foundry.helpers.interaction.KeyboardManager.MODIFIER_KEYS.ALT);
 
     return getSystemKeybinding(action).some((b) => {
         if (

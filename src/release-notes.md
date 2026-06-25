@@ -1,3 +1,23 @@
+### Release 2.1.2 🔧
+<sup>24th June 2026</sup>
+
+Compatibility update for Foundry VTT v14. No new features — this release updates the system to run correctly on Foundry v14 and fixes a crash that occurred when rolling damage.
+
+#### 🛠️ Full Changelog
+
+##### 🐛 Bug Fixes
+
+* Updated system compatibility for Foundry VTT v14
+* Fixed a crash ("Cannot assign to read only property 'effects'") that occurred when rolling damage in Foundry v14
+* Fixed a deprecation warning for `KeyboardManager` now namespaced under `foundry.helpers.interaction.KeyboardManager` in Foundry v14
+* Updated `TextEditor.enrichHTML` and `TextEditor.getDragEventData` calls to use the new v14 namespaced API
+* Removed deprecated `CONFIG.ActiveEffect.legacyTransferral` setting removed in v14
+* Updated sheet registration to use the new v14 `foundry.documents.collections` API
+
+— **Team Metalworks**
+
+---
+
 ### Release 2.1.0 ✨
 <sup>15th May 2026</sup>
 
